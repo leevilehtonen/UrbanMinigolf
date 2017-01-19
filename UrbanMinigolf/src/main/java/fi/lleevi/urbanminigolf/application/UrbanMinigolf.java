@@ -44,12 +44,23 @@ public class UrbanMinigolf implements Runnable {
     }
 
     public void run(double delta) {
-        Duration deltaTime = Duration.ZERO;
-        Instant beginTime = Instant.now();
+        long deltaTime = 0;
+        long beginTime = 0;
+        long currentTime = 0;
+        
         while (running) {
-
-            System.out.println(deltaTime.getSeconds());
-            deltaTime = Duration.between(beginTime, Instant.now());
+            
+            try {
+                Thread.sleep(1000/60);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(UrbanMinigolf.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            currentTime = System.nanoTime();
+            deltaTime = currentTime-beginTime;
+            beginTime = currentTime;
+            
+            System.out.println(deltaTime/1000000000.0);
         }
     }
 
