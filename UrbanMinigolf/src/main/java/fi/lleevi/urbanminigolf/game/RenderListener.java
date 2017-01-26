@@ -13,18 +13,18 @@ import java.awt.event.ActionListener;
  *
  * @author lleevi
  */
-public class RenderListener implements ActionListener{
-    
+public class RenderListener implements ActionListener {
+
     private final GameEngine engine;
 
     public RenderListener(GameEngine engine) {
         this.engine = engine;
     }
-   
+
     @Override
     public void actionPerformed(ActionEvent e) {
         engine.paintImmediately(0, 0, engine.getWidth(), engine.getHeight());
         Toolkit.getDefaultToolkit().sync();
     }
-    
+
 }

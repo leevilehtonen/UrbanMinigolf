@@ -10,13 +10,13 @@ public class Ball extends GameObject {
 
     @Override
     public void update(double delta) {
-        posX += 100*delta*velX;
-        
-        if(velX>0) {
+        posX += 100 * delta * velX;
+
+        if (velX > 0) {
             velX -= 0.004;
         }
-        
-        if(Math.abs(velX)<0.005) {
+
+        if (Math.abs(velX) < 0.005) {
             velX = 0;
         }
     }

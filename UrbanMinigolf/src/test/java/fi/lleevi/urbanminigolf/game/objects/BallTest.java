@@ -54,5 +54,19 @@ public class BallTest {
     public void ballTypeCorrect() {
         assertTrue(b.getType() == Type.Ball);
     }
+    
+    @Test
+    public void velocityChangeWorks() {
+        b.update(0);
+        b.setVelX(0);
+        b.setVelY(0);
+        assertTrue(b.getVelX() == 0 && b.getVelY() == 0);
+        b.setVelX(100);
+        b.setVelY(100);
+        assertTrue(b.velX == 100 && b.getVelY() == 100);
+        
+    }
+    
+    
 
 }
