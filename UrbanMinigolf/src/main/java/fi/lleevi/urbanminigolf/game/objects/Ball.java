@@ -6,7 +6,6 @@ public class Ball extends GameObject {
 
     public Ball(int posX, int posY, Type type) {
         super(posX, posY, type);
-        velX = 1;
     }
 
     @Override

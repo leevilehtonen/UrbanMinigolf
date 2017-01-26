@@ -12,7 +12,7 @@ import javax.swing.Timer;
 
 public class GameEngine extends JComponent {
 
-    private boolean running;
+    private boolean running = false;
 
     private ArrayList<GameObject> objects = new ArrayList<>();
 
@@ -23,16 +23,16 @@ public class GameEngine extends JComponent {
     private final RenderListener renderListener;
 
     public GameEngine() {
-        running = true;
         initializeMap();
 
         updateListener = new UpdateListener(this);
         renderListener = new RenderListener(this);
 
-        renderTimer = new Timer(0, renderListener);
+        renderTimer = new Timer(1, renderListener);
         renderTimer.start();
         updateTimer = new Timer(16, updateListener);
         updateTimer.start();
+        running = true;
 
     }
 
@@ -43,8 +43,8 @@ public class GameEngine extends JComponent {
         super.paintComponent(g);
         RenderingHints renderingHints = new RenderingHints(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         renderingHints.put(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
-        g2.setRenderingHints(renderingHints);       
-        
+        g2.setRenderingHints(renderingHints);
+
         for (GameObject object : objects) {
             object.render(g2);
 
@@ -67,7 +67,22 @@ public class GameEngine extends JComponent {
     }
 
     private void initializeMap() {
-        addNewGameObject(new Ball(10, 10, Type.Ball));
+        Ball b = new Ball(10, 10, Type.Ball);
+        addNewGameObject(b);
+        b.setVelX(1);
+        
     }
 
+    public ArrayList<GameObject> getObjects() {
+        return objects;
+    }
+
+    public boolean isRunning() {
+        return running;
+    }
+
+    public void setRunning(boolean running) {
+        this.running = running;
+    }
+    
 }

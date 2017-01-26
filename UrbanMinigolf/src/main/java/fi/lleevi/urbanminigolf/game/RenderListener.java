@@ -5,6 +5,7 @@
  */
 package fi.lleevi.urbanminigolf.game;
 
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -22,7 +23,8 @@ public class RenderListener implements ActionListener{
    
     @Override
     public void actionPerformed(ActionEvent e) {
-        engine.repaint();
+        engine.paintImmediately(0, 0, engine.getWidth(), engine.getHeight());
+        Toolkit.getDefaultToolkit().sync();
     }
     
 }
