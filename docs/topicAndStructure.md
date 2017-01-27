@@ -16,3 +16,6 @@ Possible extra feature will be a tiled map/level editor, so users can create the
 * Build new levels to the game
 * Save new levels to a file
 * Load levels from a file
+
+## Class diagram
+![Stage1ClassDiagram](diagrams/images/Stage1ClassDiagram.png)
