@@ -30,8 +30,8 @@ public class BallTest {
 
     @Test
     public void ballInitializedToZero() {
-        assertTrue(b.getPosX() == 0);
-        assertTrue(b.getPosY() == 0);
+        assertTrue(b.getX()== 0);
+        assertTrue(b.getY() == 0);
         assertTrue(b.getVelX()== 0);
         assertTrue(b.getVelY() == 0);
     }
@@ -40,14 +40,14 @@ public class BallTest {
     public void updateChangesPosition() {
         b.setVelX(1);
         b.update(1);
-        assertTrue(b.getPosX() > 0);
+        assertTrue(b.getX() > 0);
 
     }
 
     @Test
     public void updateWithDeltaZeroNoUpdate() {
         b.update(0);
-        assertTrue(b.getPosX() == 0);
+        assertTrue(b.getX()== 0);
     }
 
     @Test

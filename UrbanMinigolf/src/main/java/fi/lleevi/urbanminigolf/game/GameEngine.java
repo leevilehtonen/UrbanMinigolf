@@ -3,18 +3,24 @@ package fi.lleevi.urbanminigolf.game;
 import fi.lleevi.urbanminigolf.game.objects.GameObject;
 import fi.lleevi.urbanminigolf.game.objects.Ball;
 import fi.lleevi.urbanminigolf.game.objects.Type;
+import fi.lleevi.urbanminigolf.game.objects.Wall;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 import javax.swing.JComponent;
 import javax.swing.Timer;
 
-public class GameEngine extends JComponent {
+public class GameEngine extends JComponent implements MouseMotionListener{
 
     private boolean running = false;
 
     private ArrayList<GameObject> objects = new ArrayList<>();
+    
+    private Wall wall;
+    private Ball ball;
 
     private final Timer updateTimer;
     private final Timer renderTimer;
@@ -33,6 +39,8 @@ public class GameEngine extends JComponent {
         updateTimer = new Timer(16, updateListener);
         updateTimer.start();
         running = true;
+        
+        addMouseMotionListener(this);
 
     }
 
@@ -53,9 +61,10 @@ public class GameEngine extends JComponent {
     }
 
     public void update(double delta) {
-        for (GameObject object : objects) {
-            object.update(delta);
-        }
+        ball.update(delta);
+        ball.instersect(wall);
+        wall.update(delta);
+        
     }
 
     public void addNewGameObject(GameObject object) {
@@ -67,9 +76,12 @@ public class GameEngine extends JComponent {
     }
 
     private void initializeMap() {
-        Ball b = new Ball(10, 10, Type.Ball);
-        addNewGameObject(b);
-        b.setVelX(1);
+        ball = new Ball(10, 10, Type.Ball);
+        addNewGameObject(ball);
+        ball.setVelX(5);
+        
+        wall = new Wall(100, 100, Type.Wall);
+        addNewGameObject(wall);
         
     }
 
@@ -84,5 +96,14 @@ public class GameEngine extends JComponent {
     public void setRunning(boolean running) {
         this.running = running;
     }
-    
+
+    @Override
+    public void mouseDragged(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseMoved(MouseEvent e) {
+        wall.setLocation(e.getX(), e.getY());
+    }
+
 }

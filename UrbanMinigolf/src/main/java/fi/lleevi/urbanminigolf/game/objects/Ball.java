@@ -5,25 +5,32 @@ import java.awt.Graphics2D;
 public class Ball extends GameObject {
 
     public Ball(int posX, int posY, Type type) {
-        super(posX, posY, type);
+        super(posX, posY, 20, 20, type);
     }
 
     @Override
     public void update(double delta) {
-        posX += 100 * delta * velX;
+        setLocation((int) Math.round(getX() + ((getVelX() * 100) * delta)), (int) getY());
 
-        if (velX > 0) {
-            velX -= 0.004;
-        }
-
-        if (Math.abs(velX) < 0.005) {
-            velX = 0;
+        if (getVelX() > 0.0f) {
+            setVelX((float) (getVelX() - 0.02));
+        } else {
+            setVelX((float) (getVelX() + 0.02));
         }
     }
 
     @Override
     public void render(Graphics2D g) {
-        g.fillOval((int) posX, (int) posY, 20, 20);
+        g.fillOval((int) getX(), (int) getY(), 20, 20);
+    }
+
+    public void instersect(GameObject object) {
+        Wall wall = (Wall) object;
+
+        if (intersectsLine(wall.getX(), wall.getY(), wall.getX(), wall.getMaxY())) {
+            mirrorXVel();
+        }
+
     }
 
 }

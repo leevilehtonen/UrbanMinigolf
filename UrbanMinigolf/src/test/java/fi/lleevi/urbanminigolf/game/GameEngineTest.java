@@ -35,19 +35,19 @@ public class GameEngineTest {
 
     @Test
     public void gameEngineItemsAddedTest() {
-        assertTrue(engine.getObjects().size() == 1);
-        engine.addNewGameObject(new Ball(0, 0, Type.Ball));
         assertTrue(engine.getObjects().size() == 2);
+        engine.addNewGameObject(new Ball(0, 0, Type.Ball));
+        assertTrue(engine.getObjects().size() == 3);
     }
 
     @Test
     public void gameEngineItemsRemovedTest() {
-        assertTrue(engine.getObjects().size() == 1);
+        assertTrue(engine.getObjects().size() == 2);
         Ball b = new Ball(0, 0, Type.Ball);
         engine.addNewGameObject(b);
-        assertTrue(engine.getObjects().size() == 2);
+        assertTrue(engine.getObjects().size() == 3);
         engine.removeGameObject(b);
-        assertTrue(engine.getObjects().size() == 1);   
+        assertTrue(engine.getObjects().size() == 2);   
         
     }
 
@@ -60,10 +60,9 @@ public class GameEngineTest {
     
     @Test
     public void engineUpdatesObjects() {
-        float posInit = engine.getObjects().get(0).getPosX();
+        double posInit = engine.getObjects().get(0).getX();
         engine.update(1);
-        float posAfter = engine.getObjects().get(0).getPosX();
-        assertTrue(posInit!=posAfter);
+        assertTrue(posInit!=0);
     }
     
 }
