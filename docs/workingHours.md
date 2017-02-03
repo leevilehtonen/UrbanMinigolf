@@ -6,3 +6,4 @@ Day | Hours | Description
 24.01.2017 | 5h | Researh (Game engine in Swing) and begin implementing core features
 25.01.2017 | 2h | Game loop optimization
 26.01.2017 | 5h | Class diagram, testing different setups and JUnit tests
+03.02.2017 | 4h | Mouse input processing, new tests
