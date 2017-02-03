@@ -18,4 +18,4 @@ Possible extra feature will be a tiled map/level editor, so users can create the
 * Load levels from a file
 
 ## Class diagram
-![Stage1ClassDiagram](diagrams/images/Stage1ClassDiagram.png)
+![Stage2ClassDiagram](diagrams/images/Stage2ClassDiagram.png)
