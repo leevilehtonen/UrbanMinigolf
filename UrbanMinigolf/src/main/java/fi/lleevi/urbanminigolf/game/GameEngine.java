@@ -2,6 +2,7 @@ package fi.lleevi.urbanminigolf.game;
 
 import fi.lleevi.urbanminigolf.game.objects.GameObject;
 import fi.lleevi.urbanminigolf.game.objects.Ball;
+import fi.lleevi.urbanminigolf.game.objects.Cursor;
 import fi.lleevi.urbanminigolf.game.objects.Type;
 import fi.lleevi.urbanminigolf.game.objects.Wall;
 import java.awt.Graphics;
@@ -13,35 +14,26 @@ import java.util.ArrayList;
 import javax.swing.JComponent;
 import javax.swing.Timer;
 
-public class GameEngine extends JComponent implements MouseMotionListener{
+public class GameEngine extends JComponent {
 
     private boolean running = false;
 
+    private Cursor cursor;
+
+    private Timer updateTimer;
+    private Timer renderTimer;
+
+    private UpdateListener updateListener;
+    private RenderListener renderListener;
+    private MouseListener mouseListener;
+
     private ArrayList<GameObject> objects = new ArrayList<>();
-    
-    private Wall wall;
+
     private Ball ball;
-
-    private final Timer updateTimer;
-    private final Timer renderTimer;
-
-    private final UpdateListener updateListener;
-    private final RenderListener renderListener;
 
     public GameEngine() {
         initializeMap();
-
-        updateListener = new UpdateListener(this);
-        renderListener = new RenderListener(this);
-
-        renderTimer = new Timer(1, renderListener);
-        renderTimer.start();
-        updateTimer = new Timer(16, updateListener);
-        updateTimer.start();
-        running = true;
-        
-        addMouseMotionListener(this);
-
+        initializeEngine();
     }
 
     @Override
@@ -55,16 +47,15 @@ public class GameEngine extends JComponent implements MouseMotionListener{
 
         for (GameObject object : objects) {
             object.render(g2);
-
         }
 
+        if (cursor.canDraw()) {
+            g.drawLine((int) cursor.getX(), (int) cursor.getY(), (int) ball.getBounds().getCenterX(), (int) ball.getBounds().getCenterY());
+        }
     }
 
     public void update(double delta) {
         ball.update(delta);
-        ball.instersect(wall);
-        wall.update(delta);
-        
     }
 
     public void addNewGameObject(GameObject object) {
@@ -78,15 +69,24 @@ public class GameEngine extends JComponent implements MouseMotionListener{
     private void initializeMap() {
         ball = new Ball(10, 10, Type.Ball);
         addNewGameObject(ball);
-        ball.setVelX(5);
-        
-        wall = new Wall(100, 100, Type.Wall);
-        addNewGameObject(wall);
-        
     }
 
-    public ArrayList<GameObject> getObjects() {
-        return objects;
+    private void initializeEngine() {
+
+        cursor = new Cursor();
+        updateListener = new UpdateListener(this);
+        renderListener = new RenderListener(this);
+        mouseListener = new MouseListener(this, cursor);
+
+        renderTimer = new Timer(1, renderListener);
+        renderTimer.start();
+        updateTimer = new Timer(16, updateListener);
+        updateTimer.start();
+
+        running = true;
+
+        addMouseMotionListener(mouseListener);
+        addMouseListener(mouseListener);
     }
 
     public boolean isRunning() {
@@ -97,13 +97,11 @@ public class GameEngine extends JComponent implements MouseMotionListener{
         this.running = running;
     }
 
-    @Override
-    public void mouseDragged(MouseEvent e) {
+    public ArrayList<GameObject> getObjects() {
+        return objects;
     }
 
-    @Override
-    public void mouseMoved(MouseEvent e) {
-        wall.setLocation(e.getX(), e.getY());
+    public void hitBall(double x, double y) {
+        ball.hit(x - ball.getBounds().getCenterX(), y - ball.getBounds().getCenterY());
     }
-
 }

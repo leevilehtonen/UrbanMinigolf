@@ -3,13 +3,16 @@ package fi.lleevi.urbanminigolf.game.objects;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
-public abstract class GameObject extends Rectangle {
+public abstract class GameObject {
 
-    protected float velX, velY;
+    protected double posX, posY;
+    protected double velX, velY;
     protected Type type;
+    protected Rectangle bounds;
 
-    public GameObject(float posX, float posY, float width, float height, Type type) {
-        super((int) posX, (int) posY, (int) width, (int) height);
+    public GameObject(double posX, double posY, double width, double height, Type type) {
+
+        this.bounds = new Rectangle((int) posX, (int) posY, (int) width, (int) height);
         this.type = type;
     }
 
@@ -17,22 +20,47 @@ public abstract class GameObject extends Rectangle {
 
     public abstract void render(Graphics2D g);
 
-    public float getVelX() {
+    public double getPosX() {
+        return posX;
+    }
+
+    public void setPosX(double posX) {
+        this.posX = posX;
+        this.bounds.setLocation((int) Math.round(posX), this.bounds.y);
+    }
+
+    public double getPosY() {
+        return posY;
+    }
+
+    public void setPosY(double posY) {
+        this.posY = posY;
+        this.bounds.setLocation(this.bounds.x, (int) Math.round(posY));
+    }
+
+    public Rectangle getBounds() {
+        return bounds;
+    }
+
+    public void setBounds(Rectangle bounds) {
+        this.bounds = bounds;
+    }
+
+    public double getVelX() {
         return velX;
     }
 
-    public void setVelX(float velX) {
+    public void setVelX(double velX) {
         this.velX = velX;
     }
 
-    public float getVelY() {
+    public double getVelY() {
         return velY;
     }
 
-    public void setVelY(float velY) {
+    public void setVelY(double velY) {
         this.velY = velY;
     }
-
 
     public Type getType() {
         return type;

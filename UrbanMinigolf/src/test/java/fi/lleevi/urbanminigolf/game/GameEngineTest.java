@@ -35,20 +35,20 @@ public class GameEngineTest {
 
     @Test
     public void gameEngineItemsAddedTest() {
-        assertTrue(engine.getObjects().size() == 2);
+        int sizeInit = engine.getObjects().size();
         engine.addNewGameObject(new Ball(0, 0, Type.Ball));
-        assertTrue(engine.getObjects().size() == 3);
+        assertTrue(engine.getObjects().size() == sizeInit + 1);
     }
 
     @Test
     public void gameEngineItemsRemovedTest() {
-        assertTrue(engine.getObjects().size() == 2);
+        int sizeInit = engine.getObjects().size();
         Ball b = new Ball(0, 0, Type.Ball);
         engine.addNewGameObject(b);
-        assertTrue(engine.getObjects().size() == 3);
+        assertTrue(engine.getObjects().size() == sizeInit + 1);
         engine.removeGameObject(b);
-        assertTrue(engine.getObjects().size() == 2);   
-        
+        assertTrue(engine.getObjects().size() == sizeInit);
+
     }
 
     @Test
@@ -57,12 +57,51 @@ public class GameEngineTest {
         engine.setRunning(false);
         assertTrue(!engine.isRunning());
     }
-    
+
     @Test
-    public void engineUpdatesObjects() {
-        double posInit = engine.getObjects().get(0).getX();
+    public void engineUpdatesObjectsIfNotHit() {
+        double posInit = engine.getObjects().get(0).getPosX();
         engine.update(1);
-        assertTrue(posInit!=0);
+        System.out.println(posInit);
+        assertTrue(posInit == 0);
+    }
+
+    @Test
+    public void engineUpdatesObjectsIfHit() {
+        double posInit = engine.getObjects().get(0).getPosX();
+        ((Ball) engine.getObjects().get(0)).hit(100, 100);
+        engine.update(1);
+        System.out.println(posInit);
+        assertTrue(posInit != engine.getObjects().get(0).getPosX());
+    }
+
+    @Test
+    public void engineUpdatesObjectsIfHitWithoutSpeed() {
+        double posInit = engine.getObjects().get(0).getPosX();
+        ((Ball) engine.getObjects().get(0)).hit(0, 0);
+        engine.update(1);
+        System.out.println(posInit);
+        assertTrue(posInit == 0);
+    }
+    @Test
+    public void hittingChangesSpeed() {
+        Ball b = (Ball) engine.getObjects().get(0);
+        double initSpeedX = b.getVelX();
+        double initSpeedY = b.getVelY();
+        engine.hitBall(100, 100);
+        assertTrue(initSpeedX!=b.getVelX());
+        assertTrue(initSpeedY!=b.getVelY());
+    }
+    @Test
+    public void hittingWithZeroNotChangeSpeed() {
+        Ball b = (Ball) engine.getObjects().get(0);
+        double initSpeedX = b.getVelX();
+        double initSpeedY = b.getVelY();
+        engine.hitBall(b.getBounds().getCenterX(), b.getBounds().getCenterY());
+        assertTrue(initSpeedX==b.getVelX());
+        assertTrue(initSpeedY==b.getVelY());
     }
     
+    
+
 }
