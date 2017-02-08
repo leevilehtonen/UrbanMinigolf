@@ -6,18 +6,15 @@ import java.awt.Rectangle;
 public abstract class GameObject {
 
     protected double posX, posY;
-    protected double velX, velY;
     protected Type type;
     protected Rectangle bounds;
 
     public GameObject(double posX, double posY, double width, double height, Type type) {
-
+        this.posX = posX;
+        this.posY = posY;
         this.bounds = new Rectangle((int) posX, (int) posY, (int) width, (int) height);
         this.type = type;
     }
-
-    public abstract void update(double delta);
-
     public abstract void render(Graphics2D g);
 
     public double getPosX() {
@@ -46,21 +43,6 @@ public abstract class GameObject {
         this.bounds = bounds;
     }
 
-    public double getVelX() {
-        return velX;
-    }
-
-    public void setVelX(double velX) {
-        this.velX = velX;
-    }
-
-    public double getVelY() {
-        return velY;
-    }
-
-    public void setVelY(double velY) {
-        this.velY = velY;
-    }
 
     public Type getType() {
         return type;
@@ -68,14 +50,6 @@ public abstract class GameObject {
 
     public void setType(Type type) {
         this.type = type;
-    }
-
-    public void mirrorXVel() {
-        this.velX = this.velX * (-1);
-    }
-
-    public void mirrorYVel() {
-        this.velY = this.velY * (-1);
     }
 
 }

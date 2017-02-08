@@ -7,8 +7,8 @@ import javax.swing.JFrame;
 
 public class GameWindow extends JFrame implements Runnable {
 
-    private static final int GAME_WIDTH = 800;
-    private static final int GAME_HEIGHT = 600;
+    public static final int GAME_WIDTH = 800;
+    public static final int GAME_HEIGHT = 600;
     private static final String GAME_TITLE = "Urban Minigolf";
 
     private GameEngine engine;
@@ -23,9 +23,9 @@ public class GameWindow extends JFrame implements Runnable {
         setResizable(false);
         createFrameComponents(getContentPane());
         setVisible(true);
-        setLocationRelativeTo(null);
         pack();
-        
+        setLocationRelativeTo(null);
+
     }
 
     private void createFrameComponents(Container container) {

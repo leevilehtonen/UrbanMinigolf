@@ -30,8 +30,10 @@ public class MouseListener implements MouseInputListener {
 
     @Override
     public void mousePressed(MouseEvent e) {
-        this.cursor.setCanDraw(false);
-        this.engine.hitBall(e.getX(), e.getY());
+        if (this.engine.isHittable()) {
+            this.engine.hitBall(e.getX(), e.getY());
+            this.engine.setHittable(false);
+        }
     }
 
     @Override

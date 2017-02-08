@@ -36,14 +36,14 @@ public class GameEngineTest {
     @Test
     public void gameEngineItemsAddedTest() {
         int sizeInit = engine.getObjects().size();
-        engine.addNewGameObject(new Ball(0, 0, Type.Ball));
+        engine.addNewGameObject(new Ball(0, 0));
         assertTrue(engine.getObjects().size() == sizeInit + 1);
     }
 
     @Test
     public void gameEngineItemsRemovedTest() {
         int sizeInit = engine.getObjects().size();
-        Ball b = new Ball(0, 0, Type.Ball);
+        Ball b = new Ball(0, 0);
         engine.addNewGameObject(b);
         assertTrue(engine.getObjects().size() == sizeInit + 1);
         engine.removeGameObject(b);

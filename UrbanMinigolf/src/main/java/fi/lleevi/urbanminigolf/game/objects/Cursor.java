@@ -9,19 +9,9 @@ import java.awt.Point;
 
 public class Cursor extends Point {
 
-    private boolean canDraw;
-
     public Cursor() {
         super();
-        canDraw = true;
     }
 
-    public boolean canDraw() {
-        return canDraw;
-    }
-
-    public void setCanDraw(boolean canDraw) {
-        this.canDraw = canDraw;
-    }
 
 }
