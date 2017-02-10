@@ -1,15 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package fi.lleevi.urbanminigolf.game;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- *
+ * Päivityskuuntelija, update timerin kutsuma
  * @author lleevi
  */
 public class UpdateListener implements ActionListener {
@@ -22,7 +17,11 @@ public class UpdateListener implements ActionListener {
         this.engine = engine;
         this.lastTime = System.nanoTime();
     }
-
+    /**
+     * Tapahtuma, joka kutsutaan kun halutaan päivittää peliä (timerilla)
+     * 
+     * @param e tapahtuma
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         currentTime = System.nanoTime();

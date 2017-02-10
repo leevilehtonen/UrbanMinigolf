@@ -3,6 +3,10 @@ package fi.lleevi.urbanminigolf.game.objects;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
+/**
+ * Peliobjektin abstrakti perusluokka
+ * @author lleevi
+ */
 public abstract class GameObject {
 
     protected double posX, posY;

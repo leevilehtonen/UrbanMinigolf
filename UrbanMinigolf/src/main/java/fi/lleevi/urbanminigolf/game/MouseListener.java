@@ -4,6 +4,10 @@ import fi.lleevi.urbanminigolf.game.objects.Cursor;
 import java.awt.event.MouseEvent;
 import javax.swing.event.MouseInputListener;
 
+/**
+ * Hiirikuuntelija
+ * @author lleevi
+ */
 public class MouseListener implements MouseInputListener {
 
     private final GameEngine engine;
@@ -18,6 +22,11 @@ public class MouseListener implements MouseInputListener {
     public void mouseDragged(MouseEvent e) {
     }
 
+    /**
+     * Päivitetään suuntavektoria hiiren suuntaan
+     * 
+     * @param e painallustapahtuma
+     */
     @Override
     public void mouseMoved(MouseEvent e) {
         cursor.setLocation(e.getX(), e.getY());
@@ -27,7 +36,12 @@ public class MouseListener implements MouseInputListener {
     public void mouseClicked(MouseEvent e) {
 
     }
-
+    
+    /**
+     * Hiirtä painettaessa laukaistaan pallo hiiren suuntaan
+     * 
+     * @param e painallustapahtuma
+     */
     @Override
     public void mousePressed(MouseEvent e) {
         if (this.engine.isHittable()) {

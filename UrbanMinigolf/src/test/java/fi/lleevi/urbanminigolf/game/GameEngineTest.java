@@ -6,7 +6,6 @@
 package fi.lleevi.urbanminigolf.game;
 
 import fi.lleevi.urbanminigolf.game.objects.Ball;
-import fi.lleevi.urbanminigolf.game.objects.Type;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -60,32 +59,30 @@ public class GameEngineTest {
 
     @Test
     public void engineUpdatesObjectsIfNotHit() {
-        double posInit = engine.getObjects().get(0).getPosX();
+        double posInit = engine.getBall().getPosX();
         engine.update(1);
         System.out.println(posInit);
-        assertTrue(posInit == 0);
+        assertTrue(posInit == engine.getBall().getPosX());
     }
 
     @Test
     public void engineUpdatesObjectsIfHit() {
-        double posInit = engine.getObjects().get(0).getPosX();
-        ((Ball) engine.getObjects().get(0)).hit(100, 100);
+        double posInit = engine.getBall().getPosX();
+        engine.getBall().hit(100, 100);
         engine.update(1);
-        System.out.println(posInit);
-        assertTrue(posInit != engine.getObjects().get(0).getPosX());
+        assertTrue(posInit != engine.getBall().getPosX());
     }
 
     @Test
     public void engineUpdatesObjectsIfHitWithoutSpeed() {
-        double posInit = engine.getObjects().get(0).getPosX();
-        ((Ball) engine.getObjects().get(0)).hit(0, 0);
+        double posInit = engine.getBall().getPosX();
+        engine.getBall().hit(0, 0);
         engine.update(1);
-        System.out.println(posInit);
-        assertTrue(posInit == 0);
+        assertTrue(posInit == engine.getBall().getPosX());
     }
     @Test
     public void hittingChangesSpeed() {
-        Ball b = (Ball) engine.getObjects().get(0);
+        Ball b = engine.getBall();
         double initSpeedX = b.getVelX();
         double initSpeedY = b.getVelY();
         engine.hitBall(100, 100);
@@ -94,7 +91,7 @@ public class GameEngineTest {
     }
     @Test
     public void hittingWithZeroNotChangeSpeed() {
-        Ball b = (Ball) engine.getObjects().get(0);
+        Ball b = engine.getBall();
         double initSpeedX = b.getVelX();
         double initSpeedY = b.getVelY();
         engine.hitBall(b.getBounds().getCenterX(), b.getBounds().getCenterY());

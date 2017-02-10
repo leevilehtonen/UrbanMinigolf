@@ -25,7 +25,7 @@ under the License.
     <language>en-us</language>
     <copyright>&#169;2017</copyright>
     <item>
-      <title>File: 11,
+      <title>File: 14,
              Errors: 0,
              Warnings: 0,
              Infos: 0
@@ -46,7 +46,7 @@ under the License.
           <tbody>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#fi.lleevi.urbanminigolf.game.GameEngine.java">fi/lleevi/urbanminigolf/game/GameEngine.java</a>
+                  <a href="${project.url}/checkstyle.html#fi.lleevi.urbanminigolf.game.RenderListener.java">fi/lleevi/urbanminigolf/game/RenderListener.java</a>
                 </td>
                 <td>
                   0
@@ -60,7 +60,105 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#fi.lleevi.urbanminigolf.game.RenderListener.java">fi/lleevi/urbanminigolf/game/RenderListener.java</a>
+                  <a href="${project.url}/checkstyle.html#fi.lleevi.urbanminigolf.game.objects.Hole.java">fi/lleevi/urbanminigolf/game/objects/Hole.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#fi.lleevi.urbanminigolf.game.objects.MovableGameObject.java">fi/lleevi/urbanminigolf/game/objects/MovableGameObject.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#fi.lleevi.urbanminigolf.game.objects.Movable.java">fi/lleevi/urbanminigolf/game/objects/Movable.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#fi.lleevi.urbanminigolf.application.Application.java">fi/lleevi/urbanminigolf/application/Application.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#fi.lleevi.urbanminigolf.game.objects.GameObject.java">fi/lleevi/urbanminigolf/game/objects/GameObject.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#fi.lleevi.urbanminigolf.game.UpdateListener.java">fi/lleevi/urbanminigolf/game/UpdateListener.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#fi.lleevi.urbanminigolf.game.objects.Wall.java">fi/lleevi/urbanminigolf/game/objects/Wall.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#fi.lleevi.urbanminigolf.game.GameEngine.java">fi/lleevi/urbanminigolf/game/GameEngine.java</a>
                 </td>
                 <td>
                   0
@@ -130,63 +228,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#fi.lleevi.urbanminigolf.application.Application.java">fi/lleevi/urbanminigolf/application/Application.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="${project.url}/checkstyle.html#fi.lleevi.urbanminigolf.game.objects.GameObject.java">fi/lleevi/urbanminigolf/game/objects/GameObject.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="${project.url}/checkstyle.html#fi.lleevi.urbanminigolf.game.UpdateListener.java">fi/lleevi/urbanminigolf/game/UpdateListener.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="${project.url}/checkstyle.html#fi.lleevi.urbanminigolf.game.objects.Ball.java">fi/lleevi/urbanminigolf/game/objects/Ball.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="${project.url}/checkstyle.html#fi.lleevi.urbanminigolf.game.objects.Wall.java">fi/lleevi/urbanminigolf/game/objects/Wall.java</a>
                 </td>
                 <td>
                   0

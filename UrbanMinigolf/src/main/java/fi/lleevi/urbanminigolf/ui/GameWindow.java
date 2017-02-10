@@ -5,11 +5,25 @@ import java.awt.Container;
 import java.awt.Dimension;
 import javax.swing.JFrame;
 
+
+/**
+ * Peli UI ikkuna
+ * @author lleevi
+ */
 public class GameWindow extends JFrame implements Runnable {
 
+    /**
+     * Pelin leveys
+     */
     public static final int GAME_WIDTH = 800;
+    /**
+     * Pelin korkeus
+     */
     public static final int GAME_HEIGHT = 600;
-    private static final String GAME_TITLE = "Urban Minigolf";
+    /**
+     * Pelin otsikko
+     */
+    public static final String GAME_TITLE = "Urban Minigolf";
 
     private GameEngine engine;
 

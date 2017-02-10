@@ -23,7 +23,7 @@ public class BallTest {
 
     @Before
     public void setUp() {
-        b = new Ball(0, 0, Type.Ball);
+        b = new Ball(0, 0);
     }
 
     @Test
@@ -144,5 +144,58 @@ public class BallTest {
         assertTrue(b.getVelX()==100);
         assertTrue(b.getVelY()==100);
     }
+    @Test
+    public void collideWallTop() {
+        Wall wall = new Wall(-5, 5);
+        b.setVelY(10);
+        double initSpeedY = b.getVelY();
+        b.intersectsWith(wall);
+        assertTrue(initSpeedY*(-1) == b.getVelY());  
+    }
+    
+    @Test
+    public void collideWallBot() {
+        Wall wall = new Wall(-5, -40);
+        b.setVelY(10);
+        double initSpeedY = b.getVelY();
+        b.intersectsWith(wall);
+        assertTrue(initSpeedY*(-1) == b.getVelY());  
+    }
+    
+    @Test
+    public void collideWallLef() {
+        Wall wall = new Wall(0, -5);
+        b.setVelX(10);
+        double initSpeedX = b.getVelX();
+        b.intersectsWith(wall);
+        assertTrue(initSpeedX*(-1) == b.getVelX());  
+    }
+    
+    @Test
+    public void collideWallRig() {
+        Wall wall = new Wall(-40, -5);
+        b.setVelX(10);
+        double initSpeedX = b.getVelX();
+        b.intersectsWith(wall);
+        assertTrue(initSpeedX*(-1) == b.getVelX());  
+    }
+    @Test
+    public void ballNotInitToHole() {
+        assertTrue(!b.isInHole());
+    }
+    
+    @Test
+    public void ballInitHittable() {
+        assertTrue(b.isHittable());
+    }
+
+    @Test
+    public void collideHole() {
+        Hole hole = new Hole(0, 0);
+        assertTrue(!b.isInHole());
+        b.intersectsWith(hole);
+        assertTrue(b.isInHole());
+    }
+    
 
 }

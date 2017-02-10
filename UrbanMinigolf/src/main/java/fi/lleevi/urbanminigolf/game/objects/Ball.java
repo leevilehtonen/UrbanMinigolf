@@ -2,22 +2,50 @@ package fi.lleevi.urbanminigolf.game.objects;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
-import javax.swing.JOptionPane;
 
+/**
+ * Pallo-objekti
+ * @author lleevi
+ */
 public class Ball extends MovableGameObject {
 
+    /**
+     * Pallon koko
+     */
     public static final int BALL_SIZE = 10;
+
+    /**
+     * Pallon "kitkakerroin" (kerrotaan nopeus jokaisessa päivityksessä)
+     */
     public static final double BALL_FRICTION = 0.985;
+
+    /**
+     * Pallon pysähtymiskynnys nopeudessa/kitkassa
+     */
     public static final double BALL_FRICTION_THRESHOLD = 3;
+
+    /**
+     * Pallon lyöntiin lisättävä vakiokerroin
+     */
     public static final double BALL_HIT_MULTIPLIER = 2;
 
     private boolean hittable = true;
     private boolean inHole = false;
 
+    /**
+     *
+     * @param posX pallon x koordinaatti
+     * @param posY pallon y koordinaatti
+     */
     public Ball(double posX, double posY) {
         super(posX, posY, BALL_SIZE, BALL_SIZE, Type.Ball);
     }
 
+    /**
+     * Päivitetään pallon sijaintia (siirretään paikkaa nopeuden peruteella ja vähennetään nopeutta)
+     * 
+     * @param delta päivitysten välinen aika
+     */
     @Override
     public void update(double delta) {
 
@@ -40,6 +68,10 @@ public class Ball extends MovableGameObject {
         }
     }
 
+    /**
+     * Pallon piirtäminen 
+     * @param g Swing grafiikka olio
+     */
     @Override
     public void render(Graphics2D g) {
         if (!inHole) {
@@ -50,11 +82,22 @@ public class Ball extends MovableGameObject {
         }
     }
 
+    /**
+     * Asetetaan palloon nopeus, kun sitä lyödään
+     * 
+     * @param velX Pallon nopeus x suunnassa
+     * @param velY Pallon nopeus y suunnassa
+     */
     public void hit(double velX, double velY) {
         setVelX(velX * BALL_HIT_MULTIPLIER);
         setVelY(velY * BALL_HIT_MULTIPLIER);
     }
 
+    /**
+     * Tarkistetaan pallon osuma kaikkin objekteihin pelissä. (Seinistä pallo kimpoaa ja reijästä peli päättyy)
+     * 
+     * @param object Pelin objekti johon tarkistetaan osumaa
+     */
     public void intersectsWith(GameObject object) {
         if (object.getType() == Type.Hole) {
             Hole hole = (Hole) object;
@@ -62,29 +105,45 @@ public class Ball extends MovableGameObject {
                 inHole = true;
             }
         }
-        if(object.getType() == Type.Wall) {
+        if (object.getType() == Type.Wall) {
             Wall wall = (Wall) object;
-            if(wall.hitBottom(this) || wall.hitTop(this)) {
+            if (wall.hitBottom(this) || wall.hitTop(this)) {
                 mirrorYVel();
             }
-            if(wall.hitLeft(this) || wall.hitRight(this)) {
+            if (wall.hitLeft(this) || wall.hitRight(this)) {
                 mirrorXVel();
             }
         }
     }
 
+    /**
+     *
+     * @return onko pallo lyötävissä
+     */
     public boolean isHittable() {
         return hittable;
     }
 
+    /**
+     *
+     * @param hittable voidaanko palloa lyödä
+     */
     public void setHittable(boolean hittable) {
         this.hittable = hittable;
     }
 
+    /**
+     * 
+     * @return onko pallo reijässä
+     */
     public boolean isInHole() {
         return inHole;
     }
 
+    /**
+     *
+     * @param inHole onko pallo reijässä
+     */
     public void setInHole(boolean inHole) {
         this.inHole = inHole;
     }
