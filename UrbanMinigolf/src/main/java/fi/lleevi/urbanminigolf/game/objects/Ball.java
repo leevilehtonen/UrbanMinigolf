@@ -17,7 +17,7 @@ public class Ball extends MovableGameObject {
     /**
      * Pallon "kitkakerroin" (kerrotaan nopeus jokaisessa päivityksessä)
      */
-    public static final double BALL_FRICTION = 0.985;
+    public static final double BALL_FRICTION = 0.975;
 
     /**
      * Pallon pysähtymiskynnys nopeudessa/kitkassa

@@ -3,25 +3,30 @@ package fi.lleevi.urbanminigolf.game;
 import fi.lleevi.urbanminigolf.game.objects.GameObject;
 import fi.lleevi.urbanminigolf.game.objects.Ball;
 import fi.lleevi.urbanminigolf.game.objects.Cursor;
+import fi.lleevi.urbanminigolf.game.objects.GameMap;
 import fi.lleevi.urbanminigolf.game.objects.Hole;
 import fi.lleevi.urbanminigolf.game.objects.Wall;
+import fi.lleevi.urbanminigolf.io.FileReader;
 import fi.lleevi.urbanminigolf.ui.GameWindow;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JComponent;
 import javax.swing.Timer;
 
 /**
  * Pelimoottori, sitoo logiikan ja UIn
+ *
  * @author lleevi
  */
 public class GameEngine extends JComponent {
 
     private boolean running = false;
-
+    
+    private GameWindow window;
     private Cursor cursor;
 
     private Timer updateTimer;
@@ -33,17 +38,22 @@ public class GameEngine extends JComponent {
 
     private ArrayList<GameObject> objects = new ArrayList<>();
 
+    private GameMap map;
     private Ball ball;
 
-    public GameEngine() {
+    public GameEngine(GameWindow window, GameMap map) {
+        this.window = window;
+        this.map = map;
         initializeMap();
         initializeEngine();
     }
+
     /**
-     * Metodissa piirretään pelin grafiikkaa objekti kerrallaan, metodin kutsuminen tapahtuu Timerin avulla.
-     * 
-     * @param g Swing Grpahics olio 
-     * 
+     * Metodissa piirretään pelin grafiikkaa objekti kerrallaan, metodin
+     * kutsuminen tapahtuu Timerin avulla.
+     *
+     * @param g Swing Grpahics olio
+     *
      * @see RenderListener
      */
     @Override
@@ -61,15 +71,16 @@ public class GameEngine extends JComponent {
         }
 
         if (ball.isHittable()) {
-            g.drawLine((int) cursor.getX(), (int) cursor.getY(), (int) ball.getBounds().getCenterX(), (int) ball.getBounds().getCenterY());
+            g2.drawLine((int) cursor.getX(), (int) cursor.getY(), (int) ball.getBounds().getCenterX(), (int) ball.getBounds().getCenterY());
         }
     }
 
     /**
      * Metodissa päivitetään pelin objekteja
      *
-     * @param delta Päivitys metodikutsujen välinen aika, jolla voidaan tasoittaa eri tietokoneiden tehoeroja pelin päivityksessä, 
-     * 
+     * @param delta Päivitys metodikutsujen välinen aika, jolla voidaan
+     * tasoittaa eri tietokoneiden tehoeroja pelin päivityksessä,
+     *
      * @see UpdateListener
      */
     public void update(double delta) {
@@ -79,15 +90,15 @@ public class GameEngine extends JComponent {
                 ball.intersectsWith(object);
             }
             if (ball.isInHole()) {
+                window.loadNewEngine(window.getContentPane());
                 running = false;
             }
-
         }
     }
 
     /**
      * Lisää pelimoottoriin uuden objektin
-     * 
+     *
      * @param object Peliin lisättävä uusi objekti
      */
     public void addNewGameObject(GameObject object) {
@@ -96,22 +107,22 @@ public class GameEngine extends JComponent {
 
     /**
      * Poistaa pelimoottorista objektin
-     * 
+     *
      * @param object Pelistä poistettava objekti
      */
     public void removeGameObject(GameObject object) {
         this.objects.remove(object);
     }
 
-    
     private void initializeMap() {
 
-        addNewGameObject(new Hole(300, 300));
-        addNewGameObject(new Wall(100, 100));
-        addNewGameObject(new Wall(160, 100));
-
-        ball = new Ball(10, 10);
+        ball = map.getBall();
+        for (Wall wall : map.getWalls()) {
+            addNewGameObject(wall);
+        }
+        addNewGameObject(map.getHole());
         addNewGameObject(ball);
+
     }
 
     private void initializeEngine() {
@@ -141,7 +152,7 @@ public class GameEngine extends JComponent {
     }
 
     /**
-     * 
+     *
      * @param running muutettava pelin tila
      */
     public void setRunning(boolean running) {
@@ -150,7 +161,7 @@ public class GameEngine extends JComponent {
 
     /**
      * Palauttaa kaikki pelimoottorin objektit
-     * 
+     *
      * @return pelin objektit
      */
     public ArrayList<GameObject> getObjects() {
@@ -159,10 +170,10 @@ public class GameEngine extends JComponent {
 
     /**
      * Metodia kutsutaan kun hiiren nappia painetaan
-     * 
+     *
      * @param x kohde johon nopeus suunnataan x suunnassa
      * @param y kohde johon nopeus suunnataan y suunnassa
-     * 
+     *
      * @see MouseListener
      */
     public void hitBall(double x, double y) {
@@ -202,4 +213,3 @@ public class GameEngine extends JComponent {
     }
 
 }
-
