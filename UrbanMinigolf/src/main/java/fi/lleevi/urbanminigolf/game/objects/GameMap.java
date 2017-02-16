@@ -15,6 +15,10 @@ public class GameMap {
     private Ball ball;
     private Hole hole;
 
+    /**
+     * Luokka, jonka tarkoitus on muuttaa annettu string muuttuja järkeväksi pelikentäksi.
+     * @param unParsedFile 
+     */
     public GameMap(String unParsedFile) {
         if (unParsedFile.isEmpty()) {
             name = "Empty";

@@ -4,28 +4,28 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 
 /**
- * Pallo-objekti
+ * Pallo-objekti.
  * @author lleevi
  */
 public class Ball extends MovableGameObject {
 
     /**
-     * Pallon koko
+     * Pallon koko.
      */
     public static final int BALL_SIZE = 10;
 
     /**
-     * Pallon "kitkakerroin" (kerrotaan nopeus jokaisessa päivityksessä)
+     * Pallon "kitkakerroin" (kerrotaan nopeus jokaisessa päivityksessä).
      */
     public static final double BALL_FRICTION = 0.975;
 
     /**
-     * Pallon pysähtymiskynnys nopeudessa/kitkassa
+     * Pallon pysähtymiskynnys nopeudessa/kitkassa.
      */
     public static final double BALL_FRICTION_THRESHOLD = 3;
 
     /**
-     * Pallon lyöntiin lisättävä vakiokerroin
+     * Pallon lyöntiin lisättävä vakiokerroin.
      */
     public static final double BALL_HIT_MULTIPLIER = 2;
 
@@ -33,7 +33,8 @@ public class Ball extends MovableGameObject {
     private boolean inHole = false;
 
     /**
-     *
+     * Luo uuden pallon paikkaan x,y.
+     * 
      * @param posX pallon x koordinaatti
      * @param posY pallon y koordinaatti
      */
@@ -42,7 +43,7 @@ public class Ball extends MovableGameObject {
     }
 
     /**
-     * Päivitetään pallon sijaintia (siirretään paikkaa nopeuden peruteella ja vähennetään nopeutta)
+     * Päivitetään pallon sijaintia (siirretään paikkaa nopeuden peruteella ja vähennetään nopeutta).
      * 
      * @param delta päivitysten välinen aika
      */
@@ -69,7 +70,7 @@ public class Ball extends MovableGameObject {
     }
 
     /**
-     * Pallon piirtäminen 
+     * Pallon piirtäminen .
      * @param g Swing grafiikka olio
      */
     @Override
@@ -83,7 +84,7 @@ public class Ball extends MovableGameObject {
     }
 
     /**
-     * Asetetaan palloon nopeus, kun sitä lyödään
+     * Asetetaan palloon nopeus, kun sitä lyödään.
      * 
      * @param velX Pallon nopeus x suunnassa
      * @param velY Pallon nopeus y suunnassa
@@ -94,7 +95,7 @@ public class Ball extends MovableGameObject {
     }
 
     /**
-     * Tarkistetaan pallon osuma kaikkin objekteihin pelissä. (Seinistä pallo kimpoaa ja reijästä peli päättyy)
+     * Tarkistetaan pallon osuma kaikkin objekteihin pelissä. (Seinistä pallo kimpoaa ja reijästä peli päättyy).
      * 
      * @param object Pelin objekti johon tarkistetaan osumaa
      */
@@ -117,7 +118,8 @@ public class Ball extends MovableGameObject {
     }
 
     /**
-     *
+     * Palautta onko pallo lyötävissä.
+     * 
      * @return onko pallo lyötävissä
      */
     public boolean isHittable() {
@@ -125,7 +127,8 @@ public class Ball extends MovableGameObject {
     }
 
     /**
-     *
+     * Muuttaa pallon lyöntitilaa.
+     * 
      * @param hittable voidaanko palloa lyödä
      */
     public void setHittable(boolean hittable) {
@@ -133,6 +136,7 @@ public class Ball extends MovableGameObject {
     }
 
     /**
+     * Palauttaa onko pallo reijässä.
      * 
      * @return onko pallo reijässä
      */
@@ -141,7 +145,8 @@ public class Ball extends MovableGameObject {
     }
 
     /**
-     *
+     * Asettaa pallon reikään.
+     * 
      * @param inHole onko pallo reijässä
      */
     public void setInHole(boolean inHole) {

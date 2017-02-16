@@ -85,7 +85,7 @@ public class GameEngineTest {
         Ball b = engine.getBall();
         double initSpeedX = b.getVelX();
         double initSpeedY = b.getVelY();
-        engine.hitBall(100, 100);
+        engine.hitBall(1000, 1000);
         assertTrue(initSpeedX!=b.getVelX());
         assertTrue(initSpeedY!=b.getVelY());
     }

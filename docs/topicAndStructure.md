@@ -18,4 +18,12 @@ Possible extra feature will be a tiled map/level editor, so users can create the
 * Load levels from a file
 
 ## Class diagram
-![Stage3ClassDiagram](diagrams/images/Stage3ClassDiagram.png)
+![Stage3ClassDiagram](diagrams/images/Stage4ClassDiagram.png)
+
+## Sequence diagrams
+
+### Hit the ball
+![SeqDiagram1](diagrams/images/SeqDiagram1.png)
+
+### Loading levels from a file
+![SeqDiagram2](diagrams/images/SeqDiagram2.png)

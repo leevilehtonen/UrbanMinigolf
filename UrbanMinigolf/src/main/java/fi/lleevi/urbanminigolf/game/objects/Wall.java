@@ -3,16 +3,20 @@ package fi.lleevi.urbanminigolf.game.objects;
 import java.awt.Color;
 import java.awt.Graphics2D;
 /**
- * Seinä objekti
+ * Seinä objekti.
  * @author lleevi
  */
 public class Wall extends GameObject {
     
     /**
-     * Seinän koko
+     * Seinän koko.
      */
     public static final int WALL_SIZE = 40;
-
+    /**
+     * Luo uuden seinän.
+     * @param posX koordinaati x
+     * @param posY 
+     */
     public Wall(int posX, int posY) {
         super(posX, posY, WALL_SIZE, WALL_SIZE, Type.Wall);
     }
@@ -25,7 +29,7 @@ public class Wall extends GameObject {
     }
 
     /**
-     * Tarkistetaan pallon osuma seinän yläreunaan
+     * Tarkistetaan pallon osuma seinän yläreunaan.
      *
      * @param ball verrattava pallo
      *
@@ -36,7 +40,7 @@ public class Wall extends GameObject {
     }
 
     /**
-     * Tarkistetaan pallon osuma seinän alareunaan
+     * Tarkistetaan pallon osuma seinän alareunaan.
      *
      * @param ball verrattava pallo
      *
@@ -47,7 +51,7 @@ public class Wall extends GameObject {
     }
 
     /**
-     * Tarkistetaan pallon osuma seinän vasempaan reunaan
+     * Tarkistetaan pallon osuma seinän vasempaan reunaan.
      *
      * @param ball verrattava pallo
      *
@@ -58,7 +62,7 @@ public class Wall extends GameObject {
     }
 
     /**
-     * Tarkistetaan pallon osuma seinän oikeaan reunaan
+     * Tarkistetaan pallon osuma seinän oikeaan reunaan.
      *
      * @param ball verrattava pallo
      *

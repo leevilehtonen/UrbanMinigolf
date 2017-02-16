@@ -5,7 +5,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.event.MouseInputListener;
 
 /**
- * Hiirikuuntelija
+ * Hiirikuuntelija.
  * @author lleevi
  */
 public class MouseListener implements MouseInputListener {
@@ -13,6 +13,12 @@ public class MouseListener implements MouseInputListener {
     private final GameEngine engine;
     private final Cursor cursor;
 
+    /**
+     * Hiirenkuuntelija.
+     * 
+     * @param engine pelimoottori.
+     * @param cursor hiirenkursorin sijaintia kuvaava piste. 
+     */
     public MouseListener(GameEngine engine, Cursor cursor) {
         this.engine = engine;
         this.cursor = cursor;
@@ -23,7 +29,7 @@ public class MouseListener implements MouseInputListener {
     }
 
     /**
-     * Päivitetään suuntavektoria hiiren suuntaan
+     * Päivitetään suuntavektoria hiiren suuntaan.
      * 
      * @param e painallustapahtuma
      */
@@ -38,7 +44,7 @@ public class MouseListener implements MouseInputListener {
     }
     
     /**
-     * Hiirtä painettaessa laukaistaan pallo hiiren suuntaan
+     * Hiirtä painettaessa laukaistaan pallo hiiren suuntaan.
      * 
      * @param e painallustapahtuma
      */

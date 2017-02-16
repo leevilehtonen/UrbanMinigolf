@@ -3,16 +3,22 @@ package fi.lleevi.urbanminigolf.game.objects;
 import java.awt.Color;
 import java.awt.Graphics2D;
 /**
- * Reikä objekti
+ * Reikä objekti.
  * @author lleevi
  */
 public class Hole extends GameObject {
 
     /**
-     * Reijän koko
+     * Reijän koko.
      */
     public static final int HOLE_SIZE = 20;
-
+    
+    /**
+     * Luo uuden reijän.
+     * 
+     * @param posX x koordinaatti
+     * @param posY y koordinaatti
+     */
     public Hole(double posX, double posY) {
         super(posX, posY, HOLE_SIZE, HOLE_SIZE, Type.Hole);
     }
@@ -25,7 +31,7 @@ public class Hole extends GameObject {
         g.drawOval((int) Math.round(getPosX()), (int) Math.round(getPosY()), HOLE_SIZE, HOLE_SIZE);
     }
     /**
-     * Tarkistetaan pallon osuma reikään
+     * Tarkistetaan pallon osuma reikään.
      * 
      * @param ball verrattava pallo
      * 

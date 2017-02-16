@@ -4,7 +4,6 @@ import fi.lleevi.urbanminigolf.game.objects.GameObject;
 import fi.lleevi.urbanminigolf.game.objects.Ball;
 import fi.lleevi.urbanminigolf.game.objects.Cursor;
 import fi.lleevi.urbanminigolf.game.objects.GameMap;
-import fi.lleevi.urbanminigolf.game.objects.Hole;
 import fi.lleevi.urbanminigolf.game.objects.Wall;
 import fi.lleevi.urbanminigolf.io.FileReader;
 import fi.lleevi.urbanminigolf.ui.GameWindow;
@@ -15,18 +14,19 @@ import java.awt.RenderingHints;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JComponent;
+import javax.swing.JOptionPane;
 import javax.swing.Timer;
 
 /**
- * Pelimoottori, sitoo logiikan ja UIn
+ * Pelimoottori, joka sitoo logiikan ja UIn.
  *
  * @author lleevi
  */
 public class GameEngine extends JComponent {
 
     private boolean running = false;
-    
-    private GameWindow window;
+
+    private List<GameMap> maps;
     private Cursor cursor;
 
     private Timer updateTimer;
@@ -36,15 +36,19 @@ public class GameEngine extends JComponent {
     private RenderListener renderListener;
     private MouseListener mouseListener;
 
+    private GameMap map;
+
     private ArrayList<GameObject> objects = new ArrayList<>();
 
-    private GameMap map;
     private Ball ball;
+    private int mapCounter;
 
-    public GameEngine(GameWindow window, GameMap map) {
-        this.window = window;
-        this.map = map;
-        initializeMap();
+    /**
+     * Luodaan uusi pelimoottori.
+     */
+    public GameEngine() {
+        loadMaps();
+        initializeNextMap();
         initializeEngine();
     }
 
@@ -76,10 +80,12 @@ public class GameEngine extends JComponent {
     }
 
     /**
-     * Metodissa päivitetään pelin objekteja
+     * Metodissa päivitetään pelin objekteja.
      *
      * @param delta Päivitys metodikutsujen välinen aika, jolla voidaan
-     * tasoittaa eri tietokoneiden tehoeroja pelin päivityksessä,
+     * tasoittaa eri tietokoneiden tehoeroja pelin päivityksessä. Tarkistetaan
+     * myös pelin päättyminen, jos pallon on reijässä ja ladataan seuraava
+     * pelimoottori, jossa on uusi kartta.
      *
      * @see UpdateListener
      */
@@ -90,14 +96,14 @@ public class GameEngine extends JComponent {
                 ball.intersectsWith(object);
             }
             if (ball.isInHole()) {
-                window.loadNewEngine(window.getContentPane());
                 running = false;
+                initializeNextMap();
             }
         }
     }
 
     /**
-     * Lisää pelimoottoriin uuden objektin
+     * Lisää pelimoottoriin uuden objektin.
      *
      * @param object Peliin lisättävä uusi objekti
      */
@@ -106,7 +112,7 @@ public class GameEngine extends JComponent {
     }
 
     /**
-     * Poistaa pelimoottorista objektin
+     * Poistaa pelimoottorista objektin.
      *
      * @param object Pelistä poistettava objekti
      */
@@ -114,14 +120,29 @@ public class GameEngine extends JComponent {
         this.objects.remove(object);
     }
 
-    private void initializeMap() {
+    private void loadMaps() {
+        maps = FileReader.loadGameMaps();
+        mapCounter = 0;
+    }
 
+    /**
+     * Luo peliin objektit annetun kartan avulla.
+     */
+    private void initializeNextMap() {
+        if (mapCounter >= maps.size()) {
+            JOptionPane.showMessageDialog(getParent(), "SCORE WILL BE CALCULATED HERE");
+            System.exit(0);
+        }
+        objects.clear();
+        map = maps.get(mapCounter);
+        mapCounter++;
         ball = map.getBall();
         for (Wall wall : map.getWalls()) {
             addNewGameObject(wall);
         }
         addNewGameObject(map.getHole());
         addNewGameObject(ball);
+        running = true;
 
     }
 
@@ -137,21 +158,21 @@ public class GameEngine extends JComponent {
         updateTimer = new Timer(16, updateListener);
         updateTimer.start();
 
-        running = true;
-
         addMouseMotionListener(mouseListener);
         addMouseListener(mouseListener);
     }
 
     /**
+     * Tarkistaa pelin tilan.
      *
-     * @return palauttaa onko peli käynnissä
+     * @return palauttaa onko peli käynnissä.
      */
     public boolean isRunning() {
         return running;
     }
 
     /**
+     * Asettaa pelin tilan.
      *
      * @param running muutettava pelin tila
      */
@@ -160,7 +181,7 @@ public class GameEngine extends JComponent {
     }
 
     /**
-     * Palauttaa kaikki pelimoottorin objektit
+     * Palauttaa kaikki pelimoottorin objektit.
      *
      * @return pelin objektit
      */
@@ -169,7 +190,7 @@ public class GameEngine extends JComponent {
     }
 
     /**
-     * Metodia kutsutaan kun hiiren nappia painetaan
+     * Metodia kutsutaan kun hiiren nappia painetaan.
      *
      * @param x kohde johon nopeus suunnataan x suunnassa
      * @param y kohde johon nopeus suunnataan y suunnassa
@@ -181,6 +202,7 @@ public class GameEngine extends JComponent {
     }
 
     /**
+     * Palauttaa voidaanko nykyistä palloa lyödä.
      *
      * @return voidaanko palloa lyödä (onko pallo jo pysähtynyt)
      */
@@ -189,6 +211,7 @@ public class GameEngine extends JComponent {
     }
 
     /**
+     * Asettaa pallon lyömistilan paramterina annetun boolean muuttujan mukaan.
      *
      * @param hittable voidaanko palloa lyödä (onko pallo jo pysähtynyt)
      */
@@ -197,6 +220,7 @@ public class GameEngine extends JComponent {
     }
 
     /**
+     * Palauttaa nykyisen pallon.
      *
      * @return pelissä oleva pallo
      */
@@ -205,11 +229,11 @@ public class GameEngine extends JComponent {
     }
 
     /**
+     * Asettaa peliin pallon.
      *
      * @param ball asettaa peliin uuden pallon
      */
     public void setBall(Ball ball) {
         this.ball = ball;
     }
-
 }

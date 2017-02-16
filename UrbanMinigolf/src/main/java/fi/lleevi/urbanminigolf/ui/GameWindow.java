@@ -9,29 +9,32 @@ import java.util.List;
 import javax.swing.JFrame;
 
 /**
- * Peli UI ikkuna
+ * Peli UI ikkuna.
  *
  * @author lleevi
  */
 public class GameWindow extends JFrame implements Runnable {
 
     /**
-     * Pelin leveys
+     * Pelin leveys.
      */
     public static final int GAME_WIDTH = 800;
     /**
-     * Pelin korkeus
+     * Pelin korkeus.
      */
     public static final int GAME_HEIGHT = 600;
     /**
-     * Pelin otsikko
+     * Pelin otsikko.
      */
     public static final String GAME_TITLE = "Urban Minigolf";
 
     private GameEngine engine;
     private List<GameMap> maps;
     private int mapCounter;
-
+    
+    /**
+     * Luo uuden peli-ikkunan.
+     */
     public GameWindow() {
         super(GAME_TITLE);
         maps = FileReader.loadGameMaps();
@@ -49,15 +52,15 @@ public class GameWindow extends JFrame implements Runnable {
         setLocationRelativeTo(null);
 
     }
-
+    /**
+     * Luodaan ja ladataan Jframe olioon uusi pelimoottori.
+     * 
+     * @param container Jframe objektin Container olio
+     */
     public void loadNewEngine(Container container) {
-        if (container.getComponents().length > 0) {
-            container.remove(engine);
-        }
-        engine = new GameEngine(this, maps.get(Math.min(mapCounter, maps.size())));
-        container.add(engine);
-        mapCounter++;
-        validate();
+
+        container.add(new GameEngine());
+
     }
 
     @Override

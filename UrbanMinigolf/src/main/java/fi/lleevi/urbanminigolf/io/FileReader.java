@@ -6,8 +6,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Karttatiedostonlukija.
+ * @author lleevi
+ */
 public class FileReader {
 
+    /**
+     * Lukee tiedoton ja muodostaa niistä listan karttoja.
+     * 
+     * @return lista luetuista kartoista
+     */
     public static List<GameMap> loadGameMaps() {
         ArrayList<GameMap> maps = new ArrayList<>();
         try {

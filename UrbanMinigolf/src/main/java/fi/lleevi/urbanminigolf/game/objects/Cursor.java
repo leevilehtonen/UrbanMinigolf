@@ -2,11 +2,14 @@ package fi.lleevi.urbanminigolf.game.objects;
 
 import java.awt.Point;
 /**
- * Kursori, käytetään nopeusvektorin määrittelyyn
+ * Kursori, käytetään nopeusvektorin määrittelyyn.
  * @author lleevi
  */
 public class Cursor extends Point {
-
+    
+    /**
+     * Kursori.
+     */
     public Cursor() {
         super();
     }

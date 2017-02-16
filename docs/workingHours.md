@@ -9,3 +9,5 @@ Day | Hours | Description
 03.02.2017 | 4h | Mouse input processing, new tests
 08.02.2017 | 4h | Class structure updated, demo working
 10.02.2017 | 3h | Javadoc, commenting, updating diagrams
+12.02.2017 | 3h | Research (reading files, saving map types)
+14.02.2017 | 5h | Implementing how game maps are loaded and created

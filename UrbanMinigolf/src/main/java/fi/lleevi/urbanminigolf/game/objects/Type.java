@@ -1,23 +1,23 @@
 package fi.lleevi.urbanminigolf.game.objects;
 
 /**
- * Peliobjektin tyyppi
+ * Peliobjektin tyyppi.
  * 
  */
 public enum Type {
 
     /**
-     *Pallo-objekti
+     *Pallo-objekti.
      */
     Ball(),
 
     /**
-     *Seinäobjekti
+     *Seinäobjekti.
      */
     Wall(),
 
     /**
-     *Reikäobjekti
+     *Reikäobjekti.
      */
     Hole();
 }

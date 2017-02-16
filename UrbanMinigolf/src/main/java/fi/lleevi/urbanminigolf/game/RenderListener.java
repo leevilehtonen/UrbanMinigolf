@@ -5,18 +5,23 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Piirtokuuntelija, render listenerin kutsuma
+ * Piirtokuuntelija, render timerin kutsuma.
  * @author lleevi
  */
 public class RenderListener implements ActionListener {
 
     private final GameEngine engine;
 
+    /**
+     * Renderlistener.
+     * 
+     * @param engine käytettävä pelimoottori.
+     */
     public RenderListener(GameEngine engine) {
         this.engine = engine;
     }
     /**
-     * Tapahtuma, joka kutsutaan kun halutaan piirtää (timerilla)
+     * Tapahtuma, joka kutsutaan kun halutaan piirtää (timerilla).
      * 
      * @param e tapahtuma
      */
