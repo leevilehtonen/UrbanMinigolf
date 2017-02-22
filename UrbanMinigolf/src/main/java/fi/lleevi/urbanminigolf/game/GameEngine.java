@@ -8,6 +8,7 @@ import fi.lleevi.urbanminigolf.game.objects.Wall;
 import fi.lleevi.urbanminigolf.io.FileReader;
 import fi.lleevi.urbanminigolf.ui.GameWindow;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
@@ -42,6 +43,7 @@ public class GameEngine extends JComponent {
 
     private Ball ball;
     private int mapCounter;
+    private int score;
 
     /**
      * Luodaan uusi pelimoottori.
@@ -77,6 +79,8 @@ public class GameEngine extends JComponent {
         if (ball.isHittable()) {
             g2.drawLine((int) cursor.getX(), (int) cursor.getY(), (int) ball.getBounds().getCenterX(), (int) ball.getBounds().getCenterY());
         }
+        g2.setColor(Color.WHITE);
+        g2.drawString("Score: "+score, 20  ,25 );
     }
 
     /**
@@ -130,7 +134,7 @@ public class GameEngine extends JComponent {
      */
     private void initializeNextMap() {
         if (mapCounter >= maps.size()) {
-            JOptionPane.showMessageDialog(getParent(), "SCORE WILL BE CALCULATED HERE");
+            JOptionPane.showMessageDialog(getParent(), "Game over, score: " + score);
             System.exit(0);
         }
         objects.clear();
@@ -155,11 +159,12 @@ public class GameEngine extends JComponent {
 
         renderTimer = new Timer(1, renderListener);
         renderTimer.start();
-        updateTimer = new Timer(16, updateListener);
+        updateTimer = new Timer(8, updateListener);
         updateTimer.start();
 
         addMouseMotionListener(mouseListener);
         addMouseListener(mouseListener);
+        score = 0;
     }
 
     /**
@@ -199,6 +204,7 @@ public class GameEngine extends JComponent {
      */
     public void hitBall(double x, double y) {
         ball.hit(x - ball.getBounds().getCenterX(), y - ball.getBounds().getCenterY());
+        score++;
     }
 
     /**
