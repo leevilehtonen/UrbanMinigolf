@@ -12,7 +12,7 @@ public class Ball extends MovableGameObject {
     /**
      * Pallon koko.
      */
-    public static final int BALL_SIZE = 10;
+    public static final int BALL_SIZE = 15;
 
     /**
      * Pallon "kitkakerroin" (kerrotaan nopeus jokaisessa päivityksessä).

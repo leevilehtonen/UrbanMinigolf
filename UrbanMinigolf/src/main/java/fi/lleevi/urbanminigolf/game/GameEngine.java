@@ -44,6 +44,7 @@ public class GameEngine extends JComponent {
     private Ball ball;
     private int mapCounter;
     private int score;
+    private String mapName; 
 
     /**
      * Luodaan uusi pelimoottori.
@@ -81,6 +82,7 @@ public class GameEngine extends JComponent {
         }
         g2.setColor(Color.WHITE);
         g2.drawString("Score: "+score, 20  ,25 );
+        g2.drawString("Map name: " +mapName, 100  ,25 );
     }
 
     /**
@@ -95,10 +97,11 @@ public class GameEngine extends JComponent {
      */
     public void update(double delta) {
         if (running) {
-            ball.update(delta);
             for (GameObject object : objects) {
                 ball.intersectsWith(object);
             }
+            ball.update(delta);
+            
             if (ball.isInHole()) {
                 running = false;
                 initializeNextMap();
@@ -137,9 +140,11 @@ public class GameEngine extends JComponent {
             JOptionPane.showMessageDialog(getParent(), "Game over, score: " + score);
             System.exit(0);
         }
+        
         objects.clear();
         map = maps.get(mapCounter);
         mapCounter++;
+        mapName = map.getName();
         ball = map.getBall();
         for (Wall wall : map.getWalls()) {
             addNewGameObject(wall);
