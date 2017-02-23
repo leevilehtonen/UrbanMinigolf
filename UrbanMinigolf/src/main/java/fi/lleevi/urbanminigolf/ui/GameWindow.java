@@ -29,16 +29,11 @@ public class GameWindow extends JFrame implements Runnable {
     public static final String GAME_TITLE = "Urban Minigolf";
 
     private GameEngine engine;
-    private List<GameMap> maps;
-    private int mapCounter;
-    
     /**
      * Luo uuden peli-ikkunan.
      */
     public GameWindow() {
         super(GAME_TITLE);
-        maps = FileReader.loadGameMaps();
-        mapCounter = 0;
     }
 
     private void initiaizeFrame() {

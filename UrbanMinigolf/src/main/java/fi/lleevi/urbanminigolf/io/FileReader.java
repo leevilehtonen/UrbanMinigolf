@@ -20,7 +20,7 @@ public class FileReader {
     public static List<GameMap> loadGameMaps() {
         ArrayList<GameMap> maps = new ArrayList<>();
         try {
-            File mapFile = new File("defaultmap.urbanmap");
+            File mapFile = new File("defaultmap.txt");
             Scanner reader = new Scanner(mapFile);
             String unParsedMap = "";
             while (reader.hasNextLine()) {
