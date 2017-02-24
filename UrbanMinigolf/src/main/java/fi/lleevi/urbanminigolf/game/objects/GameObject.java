@@ -1,5 +1,6 @@
 package fi.lleevi.urbanminigolf.game.objects;
 
+import fi.lleevi.urbanminigolf.game.objects.Type;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 

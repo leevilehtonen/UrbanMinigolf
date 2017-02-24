@@ -46,7 +46,7 @@ under the License.
           <tbody>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#fi.lleevi.urbanminigolf.game.RenderListener.java">fi/lleevi/urbanminigolf/game/RenderListener.java</a>
+                  <a href="${project.url}/checkstyle.html#fi.lleevi.urbanminigolf.game.listeners.RenderListener.java">fi/lleevi/urbanminigolf/game/listeners/RenderListener.java</a>
                 </td>
                 <td>
                   0
@@ -130,7 +130,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#fi.lleevi.urbanminigolf.game.UpdateListener.java">fi/lleevi/urbanminigolf/game/UpdateListener.java</a>
+                  <a href="${project.url}/checkstyle.html#fi.lleevi.urbanminigolf.io.FileReader.java">fi/lleevi/urbanminigolf/io/FileReader.java</a>
                 </td>
                 <td>
                   0
@@ -144,7 +144,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#fi.lleevi.urbanminigolf.io.FileReader.java">fi/lleevi/urbanminigolf/io/FileReader.java</a>
+                  <a href="${project.url}/checkstyle.html#fi.lleevi.urbanminigolf.game.listeners.MouseListener.java">fi/lleevi/urbanminigolf/game/listeners/MouseListener.java</a>
                 </td>
                 <td>
                   0
@@ -214,7 +214,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#fi.lleevi.urbanminigolf.game.MouseListener.java">fi/lleevi/urbanminigolf/game/MouseListener.java</a>
+                  <a href="${project.url}/checkstyle.html#fi.lleevi.urbanminigolf.game.listeners.UpdateListener.java">fi/lleevi/urbanminigolf/game/listeners/UpdateListener.java</a>
                 </td>
                 <td>
                   0

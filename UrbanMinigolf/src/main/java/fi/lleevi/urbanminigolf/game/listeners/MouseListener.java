@@ -1,5 +1,6 @@
-package fi.lleevi.urbanminigolf.game;
+package fi.lleevi.urbanminigolf.game.listeners;
 
+import fi.lleevi.urbanminigolf.game.GameEngine;
 import fi.lleevi.urbanminigolf.game.objects.Cursor;
 import java.awt.event.MouseEvent;
 import javax.swing.event.MouseInputListener;

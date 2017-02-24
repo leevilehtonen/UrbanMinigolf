@@ -17,11 +17,11 @@ public class FileReader {
      * 
      * @return lista luetuista kartoista
      */
-    public static List<GameMap> loadGameMaps() {
+    public List<GameMap> loadGameMaps() {
         ArrayList<GameMap> maps = new ArrayList<>();
         try {
-            File mapFile = new File("defaultmap.txt");
-            Scanner reader = new Scanner(mapFile);
+            
+            Scanner reader = new Scanner(getClass().getClassLoader().getResourceAsStream("defaultmap.txt"));
             String unParsedMap = "";
             while (reader.hasNextLine()) {
                 String line = reader.nextLine();

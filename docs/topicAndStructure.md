@@ -17,8 +17,13 @@ Possible extra feature will be a tiled map/level editor, so users can create the
 * Save new levels to a file
 * Load levels from a file
 
+## Structure
+The Java main method begins in the Application class. In that class a new GameWindow is created. GameWindow is basically the core of ui (JFrame). In the GameWindow, a new GameEngine is created and added to the GameWindow. GameEngine is the core of the game. GameEngine combines the ui and the logic, it holds all the gameobjects instances and it has the timers for updating and rendering. Gameobject is an abstract class of object that can bee seen in the game. It holds all the position data and information how the object should be rendered. MovableGameObejct is a gameobject that has an movable interface, which means that in addition to render method it also has update method for moving.
+
+Type enum is used for GameObject so that in GameEngine there is only abstarct GameObjects. GameEngine uses UpdateListener, RenderListener and MouseListener. UpdateListener is used for UpdateTimer and it controls the all the movable objects (only ball at this stage). RenderListener is used for RenderTimer and it handles all the rendering callbacks of items and drawing the screen. MouseListener is used for ball to calculate the direction where the ball should go.
+
 ## Class diagram
-![Stage3ClassDiagram](diagrams/images/Stage4ClassDiagram.png)
+![Stage4ClassDiagram](diagrams/images/Stage4ClassDiagram.png)
 
 ## Sequence diagrams
 

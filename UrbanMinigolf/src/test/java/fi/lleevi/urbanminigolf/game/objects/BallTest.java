@@ -79,7 +79,7 @@ public class BallTest {
         assertTrue(b.getVelX() == 0 && b.getVelY() == 0);
         b.setVelX(100);
         b.setVelY(100);
-        assertTrue(b.velX == 100 && b.getVelY() == 100);
+        assertTrue(b.getVelX() == 100 && b.getVelY() == 100);
 
     }
     @Test
@@ -195,6 +195,30 @@ public class BallTest {
         assertTrue(!b.isInHole());
         b.intersectsWith(hole);
         assertTrue(b.isInHole());
+    }
+    
+    @Test
+    public void inHoleGetSet() {
+        b.setInHole(true);
+        assertTrue(b.isInHole());
+        b.setInHole(false);
+        assertTrue(!b.isInHole());
+        
+    }
+    
+    @Test
+    public void hittableGetSet() {
+        b.setHittable(true);
+        assertTrue(b.isHittable());
+        b.setHittable(false);
+        assertTrue(!b.isHittable());
+    }
+    
+    @Test
+    public void hitSetVel() {
+        double velSum = b.getVelX() + b.getVelY();
+        b.hit(10, 10);
+        assertTrue(velSum!=(b.getVelX()+b.getVelY()));
     }
     
 

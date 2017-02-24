@@ -1,5 +1,7 @@
 package fi.lleevi.urbanminigolf.game.objects;
 
+import fi.lleevi.urbanminigolf.game.objects.Type;
+
 /**
  * Abstrakti tyyppi peliobjektista, joka liikkuu.
  * @author lleevi

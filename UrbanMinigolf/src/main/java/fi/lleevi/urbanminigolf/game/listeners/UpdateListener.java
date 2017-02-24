@@ -1,5 +1,6 @@
-package fi.lleevi.urbanminigolf.game;
+package fi.lleevi.urbanminigolf.game.listeners;
 
+import fi.lleevi.urbanminigolf.game.GameEngine;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 

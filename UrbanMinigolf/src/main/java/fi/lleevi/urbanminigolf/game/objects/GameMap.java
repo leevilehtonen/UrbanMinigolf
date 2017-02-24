@@ -1,5 +1,8 @@
 package fi.lleevi.urbanminigolf.game.objects;
 
+import fi.lleevi.urbanminigolf.game.objects.Ball;
+import fi.lleevi.urbanminigolf.game.objects.Hole;
+import fi.lleevi.urbanminigolf.game.objects.Wall;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;

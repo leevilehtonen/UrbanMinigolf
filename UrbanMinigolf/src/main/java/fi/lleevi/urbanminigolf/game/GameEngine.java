@@ -1,5 +1,8 @@
 package fi.lleevi.urbanminigolf.game;
 
+import fi.lleevi.urbanminigolf.game.listeners.RenderListener;
+import fi.lleevi.urbanminigolf.game.listeners.MouseListener;
+import fi.lleevi.urbanminigolf.game.listeners.UpdateListener;
 import fi.lleevi.urbanminigolf.game.objects.GameObject;
 import fi.lleevi.urbanminigolf.game.objects.Ball;
 import fi.lleevi.urbanminigolf.game.objects.Cursor;
@@ -44,7 +47,7 @@ public class GameEngine extends JComponent {
     private Ball ball;
     private int mapCounter;
     private int score;
-    private String mapName; 
+    private String mapName;
 
     /**
      * Luodaan uusi pelimoottori.
@@ -81,8 +84,8 @@ public class GameEngine extends JComponent {
             g2.drawLine((int) cursor.getX(), (int) cursor.getY(), (int) ball.getBounds().getCenterX(), (int) ball.getBounds().getCenterY());
         }
         g2.setColor(Color.WHITE);
-        g2.drawString("Score: "+score, 20  ,25 );
-        g2.drawString("Map name: " +mapName, 100  ,25 );
+        g2.drawString("Score: " + score, 20, 25);
+        g2.drawString("Map name: " + mapName, 100, 25);
     }
 
     /**
@@ -101,7 +104,7 @@ public class GameEngine extends JComponent {
                 ball.intersectsWith(object);
             }
             ball.update(delta);
-            
+
             if (ball.isInHole()) {
                 running = false;
                 initializeNextMap();
@@ -128,7 +131,8 @@ public class GameEngine extends JComponent {
     }
 
     private void loadMaps() {
-        maps = FileReader.loadGameMaps();
+        FileReader fr = new FileReader();
+        maps = fr.loadGameMaps();
         mapCounter = 0;
     }
 
@@ -140,7 +144,7 @@ public class GameEngine extends JComponent {
             JOptionPane.showMessageDialog(getParent(), "Game over, score: " + score);
             System.exit(0);
         }
-        
+
         objects.clear();
         map = maps.get(mapCounter);
         mapCounter++;
@@ -247,4 +251,14 @@ public class GameEngine extends JComponent {
     public void setBall(Ball ball) {
         this.ball = ball;
     }
+
+    /**
+     * Palauttaa pelin sen hetkisen pistetilanteen.
+     *
+     * @return pelin pistetilanne
+     */
+    public int getScore() {
+        return score;
+    }
+
 }

@@ -98,7 +98,25 @@ public class GameEngineTest {
         assertTrue(initSpeedX==b.getVelX());
         assertTrue(initSpeedY==b.getVelY());
     }
+    @Test
+    public void ballSwitch() {
+        Ball b = engine.getBall();
+        engine.setBall(new Ball(0, 0));
+        assertTrue(b!=engine.getBall());
+    }
+    @Test
+    public void hittableSetTest() {
+        engine.setHittable(true);
+        assertTrue(engine.isHittable() == true);
+        engine.setHittable(false);
+        assertTrue(engine.isHittable() == false);
+        
+    }
     
-    
-
+    @Test
+    public void hitIncreaseScore() {
+        int s = engine.getScore();
+        engine.hitBall(0, 0);
+        assertTrue(s != engine.getScore());
+    }
 }
