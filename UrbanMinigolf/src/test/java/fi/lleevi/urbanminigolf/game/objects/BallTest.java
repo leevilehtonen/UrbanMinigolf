@@ -221,5 +221,15 @@ public class BallTest {
         assertTrue(velSum!=(b.getVelX()+b.getVelY()));
     }
     
+    @Test
+    public void mirrorVelocity() {
+        b.setVelX(100);
+        b.setVelY(100);
+        b.mirrorXVel();
+        b.mirrorYVel();
+        assertTrue(b.getVelX() == -100);
+        assertTrue(b.getVelY() == -100);
+    }
+    
 
 }

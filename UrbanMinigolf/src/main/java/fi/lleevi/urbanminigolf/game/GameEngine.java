@@ -1,8 +1,9 @@
 package fi.lleevi.urbanminigolf.game;
 
-import fi.lleevi.urbanminigolf.game.listeners.RenderListener;
-import fi.lleevi.urbanminigolf.game.listeners.MouseListener;
-import fi.lleevi.urbanminigolf.game.listeners.UpdateListener;
+import fi.lleevi.urbanminigolf.listeners.CollisionListener;
+import fi.lleevi.urbanminigolf.listeners.RenderListener;
+import fi.lleevi.urbanminigolf.listeners.MouseListener;
+import fi.lleevi.urbanminigolf.listeners.UpdateListener;
 import fi.lleevi.urbanminigolf.game.objects.GameObject;
 import fi.lleevi.urbanminigolf.game.objects.Ball;
 import fi.lleevi.urbanminigolf.game.objects.Cursor;
@@ -11,7 +12,6 @@ import fi.lleevi.urbanminigolf.game.objects.Wall;
 import fi.lleevi.urbanminigolf.io.FileReader;
 import fi.lleevi.urbanminigolf.ui.GameWindow;
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
@@ -35,10 +35,12 @@ public class GameEngine extends JComponent {
 
     private Timer updateTimer;
     private Timer renderTimer;
+    private Timer collisionTimer;
 
     private UpdateListener updateListener;
     private RenderListener renderListener;
     private MouseListener mouseListener;
+    private CollisionListener collisionListener;
 
     private GameMap map;
 
@@ -54,7 +56,10 @@ public class GameEngine extends JComponent {
      */
     public GameEngine() {
         loadMaps();
-        initializeNextMap();
+        try {
+            initializeNextMap();
+        } catch (Exception e) {
+        }
         initializeEngine();
     }
 
@@ -100,15 +105,30 @@ public class GameEngine extends JComponent {
      */
     public void update(double delta) {
         if (running) {
+            try {
+                ball.update(delta);
+            } catch (Exception e) {
+            }
+
+            if (ball != null && ball.isInHole()) {
+                running = false;
+                try {
+                    initializeNextMap();
+                } catch (Exception e) {
+                }
+            }
+        }
+    }
+
+    /**
+     * Tarkistaa osumat.
+     */
+    public void checkCollision() {
+        try {
             for (GameObject object : objects) {
                 ball.intersectsWith(object);
             }
-            ball.update(delta);
-
-            if (ball.isInHole()) {
-                running = false;
-                initializeNextMap();
-            }
+        } catch (Exception e) {
         }
     }
 
@@ -139,7 +159,7 @@ public class GameEngine extends JComponent {
     /**
      * Luo peliin objektit annetun kartan avulla.
      */
-    private void initializeNextMap() {
+    private void initializeNextMap() throws Exception {
         if (mapCounter >= maps.size()) {
             JOptionPane.showMessageDialog(getParent(), "Game over, score: " + score);
             System.exit(0);
@@ -165,14 +185,24 @@ public class GameEngine extends JComponent {
         updateListener = new UpdateListener(this);
         renderListener = new RenderListener(this);
         mouseListener = new MouseListener(this, cursor);
+        collisionListener = new CollisionListener(this);
 
         renderTimer = new Timer(1, renderListener);
         renderTimer.start();
-        updateTimer = new Timer(8, updateListener);
+        updateTimer = new Timer(16, updateListener);
         updateTimer.start();
+        collisionTimer = new Timer(0, collisionListener);
+        collisionTimer.start();
 
         addMouseMotionListener(mouseListener);
         addMouseListener(mouseListener);
+
+        if (renderTimer.isRunning() && updateTimer.isRunning() && collisionTimer.isRunning() && getMouseListeners().length > 0 && getMouseMotionListeners().length > 0) {
+            running = true;
+        } else {
+            running = false;
+        }
+
         score = 0;
     }
 
@@ -260,5 +290,4 @@ public class GameEngine extends JComponent {
     public int getScore() {
         return score;
     }
-
 }

@@ -1,12 +1,15 @@
 package fi.lleevi.urbanminigolf.game.objects;
 
-import fi.lleevi.urbanminigolf.game.objects.Ball;
-import fi.lleevi.urbanminigolf.game.objects.Hole;
-import fi.lleevi.urbanminigolf.game.objects.Wall;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+/**
+ * Pelikenttä.
+ * 
+ * @author lleevi
+ */
 
 public class GameMap {
 
@@ -16,11 +19,13 @@ public class GameMap {
     private String name;
     private List<Wall> walls;
     private Ball ball;
-    private Hole hole;
+    private Hole hole;   
 
     /**
-     * Luokka, jonka tarkoitus on muuttaa annettu string muuttuja järkeväksi pelikentäksi.
-     * @param unParsedFile 
+     * Luokka, jonka tarkoitus on muuttaa annettu string muuttuja järkeväksi
+     * pelikentäksi.
+     * 
+     * @param unParsedFile käsittelemätön tekstimuotoinen kenttä
      */
     public GameMap(String unParsedFile) {
         if (unParsedFile.isEmpty()) {
@@ -37,7 +42,11 @@ public class GameMap {
         Pattern p = Pattern.compile("\"([^\"]*)\"");
         Matcher m = p.matcher(unParsedFile);
         m.find();
-        return m.group(1);
+        try {
+            return m.group(1);
+        } catch (Exception e) {
+            return "Empty";
+        }
     }
 
     private String parseLevel(String unParsedFile) {
@@ -62,7 +71,7 @@ public class GameMap {
                 }
             }
         }
-       
+
     }
 
     @Override

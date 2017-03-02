@@ -6,6 +6,8 @@
 package fi.lleevi.urbanminigolf.game;
 
 import fi.lleevi.urbanminigolf.game.objects.Ball;
+import fi.lleevi.urbanminigolf.game.objects.GameMap;
+import fi.lleevi.urbanminigolf.game.objects.Wall;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -30,6 +32,7 @@ public class GameEngineTest {
     @Test
     public void gameEngineInitializeTest() {
         assertTrue(engine.isRunning());
+        assertTrue(engine.getScore() == 0);
     }
 
     @Test
@@ -118,5 +121,42 @@ public class GameEngineTest {
         int s = engine.getScore();
         engine.hitBall(0, 0);
         assertTrue(s != engine.getScore());
+        s = engine.getScore();
+        engine.hitBall(0, 0);
+        assertTrue(engine.getScore() == s+1);
+        
+    }
+    @Test
+    public void collisionTest() {
+        engine.getBall().setPosX(0);
+        engine.getBall().setPosY(0);
+        engine.getBall().setVelX(100);
+        engine.update(1);
+        engine.addNewGameObject(new Wall(0, 0));
+        engine.checkCollision();
+        assertTrue(engine.getBall().getVelX() != 100);
+    }
+    @Test
+    public void mapChangeTest() {
+        int c = engine.getObjects().size();
+        engine.getBall().setInHole(true);
+        Ball b = engine.getBall();
+        engine.update(1);
+        assertTrue(engine.getObjects().size()!=c);
+        assertTrue(engine.isRunning());
+        assertTrue(b != engine.getBall());
+
+    }
+    
+    @Test
+    public void mapCreateTest() {
+        GameMap map = new GameMap("");
+        map.setBall(engine.getBall());
+        assertTrue(map.getBall() == engine.getBall());
+        map.setBall(new Ball(0, 0));
+        assertTrue(map.getBall() != engine.getBall());
+        map.setName("test");
+        assertTrue(map.toString().equals("test"));
+        assertTrue(map.getName().equals("test"));
     }
 }

@@ -11,7 +11,7 @@ public class Hole extends GameObject {
     /**
      * Reijän koko.
      */
-    public static final int HOLE_SIZE = 20;
+    public static final int HOLE_SIZE = 15;
     
     /**
      * Luo uuden reijän.

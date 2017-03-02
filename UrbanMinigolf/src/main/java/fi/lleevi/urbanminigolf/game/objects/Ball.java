@@ -12,12 +12,12 @@ public class Ball extends MovableGameObject {
     /**
      * Pallon koko.
      */
-    public static final int BALL_SIZE = 15;
+    public static final int BALL_SIZE = 10;
 
     /**
      * Pallon "kitkakerroin" (kerrotaan nopeus jokaisessa päivityksessä).
      */
-    public static final double BALL_FRICTION = 0.99; //16 fps = 0.975
+    public static final double BALL_FRICTION = 0.975; //16 fps = 0.975
 
     /**
      * Pallon pysähtymiskynnys nopeudessa/kitkassa.
@@ -31,6 +31,7 @@ public class Ball extends MovableGameObject {
 
     private boolean hittable = true;
     private boolean inHole = false;
+
 
     /**
      * Luo uuden pallon paikkaan x,y.
@@ -49,7 +50,7 @@ public class Ball extends MovableGameObject {
      */
     @Override
     public void update(double delta) {
-
+        
         setPosX(getPosX() + delta * getVelX());
         setPosY(getPosY() + delta * getVelY());
 
@@ -100,19 +101,22 @@ public class Ball extends MovableGameObject {
      * @param object Pelin objekti johon tarkistetaan osumaa
      */
     public void intersectsWith(GameObject object) {
-        if (object.getType() == Type.Hole) {
-            Hole hole = (Hole) object;
-            if (hole.intersectsBall(this)) {
-                inHole = true;
-            }
-        }
+        
         if (object.getType() == Type.Wall) {
             Wall wall = (Wall) object;
             if (wall.hitBottom(this) || wall.hitTop(this)) {
                 mirrorYVel();
+                return;
             }
             if (wall.hitLeft(this) || wall.hitRight(this)) {
                 mirrorXVel();
+                return;
+            }
+        }
+        if (object.getType() == Type.Hole) {
+            Hole hole = (Hole) object;
+            if (hole.intersectsBall(this)) {
+                inHole = true;
             }
         }
     }

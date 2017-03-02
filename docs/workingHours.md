@@ -11,3 +11,7 @@ Day | Hours | Description
 10.02.2017 | 3h | Javadoc, commenting, updating diagrams
 12.02.2017 | 3h | Research (reading files, saving map types)
 14.02.2017 | 5h | Implementing how game maps are loaded and created
+21.02.2017 | 2h | Creating maps
+23.02.2017 | 2h | Tweaking for demo
+24.02.2017 | 5h | Solving Shade plugin problems
+02.03.2017 | 6h | Researching alternative ways to implement collisions and updating current collision system

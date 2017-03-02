@@ -42,13 +42,13 @@ public abstract class MovableGameObject extends GameObject implements Movable {
      * Peilaa x nopeuden.
      */
     public void mirrorXVel() {
-        this.velX = this.velX * (-1);
+        this.velX = -this.velX;
     }
     /**
      * Peilaa y nopeuden.
      */
     public void mirrorYVel() {
-        this.velY = this.velY * (-1);
+        this.velY = -this.velY;
     }
 
 }

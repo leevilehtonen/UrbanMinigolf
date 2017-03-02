@@ -43,6 +43,12 @@
                         <param>fi.lleevi.urbanminigolf.game.*</param>
                         <param>fi.lleevi.urbanminigolf.game.objects.*</param>
                     </targetTests>
+                    <avoidCallsTo>
+                        <param>javax.swing.JOptionPane</param>
+                        <param>javax.swing.JComponent</param>
+                        <param>java.awt.Graphics2D</param>
+                        <param>java.awt.RenderingHints</param>
+                    </avoidCallsTo>
                 </configuration>
             </plugin>
             <plugin>
