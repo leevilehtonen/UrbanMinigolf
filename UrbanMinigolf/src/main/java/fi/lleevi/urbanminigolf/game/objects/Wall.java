@@ -14,8 +14,8 @@ public class Wall extends GameObject {
     public static final int WALL_SIZE = 40;
     /**
      * Luo uuden seinän.
-     * @param posX koordinaati x
-     * @param posY 
+     * @param posX koordinaatti x
+     * @param posY koordinaatti y
      */
     public Wall(int posX, int posY) {
         super(posX, posY, WALL_SIZE, WALL_SIZE, Type.Wall);

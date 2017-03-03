@@ -9,7 +9,7 @@ public interface Movable {
     /**
      * Päivitetään liikkuvia objekteja.
      * 
-     * @param delta 
+     * @param delta päivitysten välinen aika
      */
     void update(double delta);
 }
