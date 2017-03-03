@@ -15,3 +15,4 @@ Day | Hours | Description
 23.02.2017 | 2h | Tweaking for demo
 24.02.2017 | 5h | Solving Shade plugin problems
 02.03.2017 | 6h | Researching alternative ways to implement collisions and updating current collision system
+02.03.2017 | 1h | Release, javadoc and tweaking
